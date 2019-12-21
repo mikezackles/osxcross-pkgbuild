@@ -40,13 +40,17 @@ build() {
   mv "$_sdkname.tar.xz" tarballs/
 
   msg2 'Build osxcross'
-  #UNATTENDED=yes OSX_VERSION_MIN=10.13 ./build.sh
-  UNATTENDED=yes ./build.sh
+  UNATTENDED=yes OSX_VERSION_MIN=10.11 ./build.sh
 }
 
 package() {
   cd "$srcdir/$pkgname"
 
   mkdir -p "$pkgdir/opt"
-  cp -R target "$pkgdir/opt/osxcross"
+  cp -r target "$pkgdir/opt/osxcross"
+  local cppdir="$pkgdir/opt/osxcross/SDK/$_sdkname/usr/include/c++"
+  # Replace any libc++ headers shipped with Xcode with those for the installed libc++
+  rm -rf "$cppdir/v1"
+  mkdir -p "$cppdir"
+  cp -r /usr/include/c++/v1 "$cppdir"
 }
