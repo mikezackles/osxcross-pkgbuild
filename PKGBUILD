@@ -52,5 +52,5 @@ package() {
   # Replace any libc++ headers shipped with Xcode with those for the installed libc++
   rm -rf "$cppdir/v1"
   mkdir -p "$cppdir"
-  cp -r /usr/include/c++/v1 "$cppdir"
+  ln -s /usr/include/c++/v1 "$cppdir/v1"
 }
