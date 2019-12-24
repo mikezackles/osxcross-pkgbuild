@@ -1,0 +1,16 @@
+[binaries]
+c = '/opt/osxcross/bin/x86_64-apple-darwin19-clang'
+cpp = '/opt/osxcross/bin/x86_64-apple-darwin19-clang++'
+ld = '/opt/osxcross/bin/x86_64-apple-darwin19-ld'
+ar = '/opt/osxcross/bin/x86_64-apple-darwin19-ar'
+strip = '/opt/osxcross/bin/x86_64-apple-darwin19-strip'
+
+[host_machine]
+system = 'darwin'
+cpu_family = 'x86_64'
+cpu = 'i686'
+endian = 'little'
+
+[properties]
+is_ios = false
+

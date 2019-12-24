@@ -27,8 +27,14 @@ optdepends=('clang>=3.2: Use Clang (rather than GCC)'
             'xar: ld64 -bitcode_bundle support')
 provides=("$pkgname")
 conflicts=("$pkgname")
-source=("git+https://github.com/tpoechtrager/$pkgname.git#commit=$_commit")
-sha256sums=('SKIP')
+source=(
+  "git+https://github.com/tpoechtrager/$pkgname.git#commit=$_commit"
+  'meson.cross'
+)
+sha256sums=(
+  'SKIP'
+  '91443cf30c3b4c64412e149280009a1003c9cb2ae1a7c3e8c2483b668b8eb532'
+)
 noextract=("$_xcode")
 options=('!strip')
 
@@ -53,4 +59,7 @@ package() {
   rm -rf "$cppdir/v1"
   mkdir -p "$cppdir"
   ln -s /usr/include/c++/v1 "$cppdir/v1"
+
+  # Install meson cross file
+  install -Dm644 "$srcdir/meson.cross" "$pkgdir/usr/local/share/meson/cross/macos"
 }
